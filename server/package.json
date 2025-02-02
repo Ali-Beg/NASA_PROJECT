@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test-watch": "jest --watch",
     "watch": "nodemon src/server.js",
     "start": "node src/server.js"
   },
@@ -20,6 +21,7 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "nasa_project": "file:..",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0"
   }
 }
