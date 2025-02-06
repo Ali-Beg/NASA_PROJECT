@@ -16,10 +16,14 @@ async function mongoConnect() {
     await mongoose.connect(MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      serverSelectionTimeoutMS:30000,
+      connectTimeoutMS:30000,
+      socketTimeoutMS:30000
     });
   } catch (err) {
     console.error('Could not connect to MongoDB:', err);
     throw err;
+    process.exit(1);
   }
 }
 
