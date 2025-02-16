@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 // It's better to use environment variables for sensitive information
 const MONGO_URL = process.env.MONGO_URL || '';
