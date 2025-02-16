@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // It's better to use environment variables for sensitive information
-const MONGO_URL = process.env.MONGO_URL || 'mongodb+srv://mirza:nasaProjectFirstBackend@nasacluster.mk0qp.mongodb.net/nasa?retryWrites=true&w=majority&appName=NASAcluster';
+const MONGO_URL = process.env.MONGO_URL || '';
 
 mongoose.connection.once('open', () => {
   console.log('MongoDB connection ready!');

@@ -1,9 +1,12 @@
 const http = require('http');
 const app = require('./app');
 
+require('dotenv').config();
+
 const { mongoConnect } = require('./services/mongo');
 const { loadPlanetsData } = require('./model/planets.model');
 const { loadLaunchData } = require('./model/launches.model');
+
 const PORT = process.env.PORT || 8000
 
 
