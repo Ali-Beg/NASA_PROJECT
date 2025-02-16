@@ -9,9 +9,11 @@ jobs:
   build:
     env:
       CI: true
+      MONGO_URL: mongodb://localhost/nasa
     strategy:
       matrix:
         node-version: [14.x]
+        mongodb-version: ['4.4']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,6 +21,18 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Use MongoDb from Github Actions
+        uses: supercharge/mongodb-github-action@1.12.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+          # mongodb-port: 27017
+          # mongodb-database: nasa
+          # mongodb-authentication-database: admin
+          # mongodb-username: root
+          # mongodb-password: example
+          # mongodb-binaries-dir: /opt/mongodb/bin
+          # mongodb-start-command: /opt/mongodb/bin/mongod --dbpath /data/db --bind_ip_all
+          # mongodb-stop-command: /opt/mongodb/bin/mongod --shutdown
       - name: Install server dependencies
         run: npm install --prefix server
 
