@@ -7,16 +7,32 @@ on:
   
 jobs:
   build:
+    env:
+      CI: true
+    strategy:
+      matrix:
+        node-version: [14.x, 18.x]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 18.x
+      - name: Use Node.js version ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: 18.x
-      - name: Install dependencies
-        run: npm install
+          node-version: ${{ matrix.node-version }}
+      # - name: Install dependencies
+      #   run: npm install
+      # - name: Install Dependencies
+      #   run: |
+      #     cd server && npm install
+      #     cd ../client && npm install
+      #     cd ..
+      #     npm install
+      - name: Install server dependencies
+        run: npm install --prefix server
+
+      - name: Install client dependencies
+        run: npm install --prefix client
       - name: Build
         run: npm run build --prefix client
-      # - name: Run tests
-      #   run: npm test
+      - name: Run tests
+        run: npm test
